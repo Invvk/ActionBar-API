@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'io.github.invvk'
-version '1.1'
+version project.ext.fullVer
 
 repositories {
     mavenCentral()
@@ -24,8 +24,6 @@ java {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = 'io.github.invvk'
-            artifactId = 'actionbar-api'
             from(components.java)
             pom {
                 name = 'Actionbar-API'
