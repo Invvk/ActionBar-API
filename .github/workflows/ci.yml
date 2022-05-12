@@ -1,4 +1,4 @@
-name: Upload Artifact
+name: Build & Publish
 
 on:
   pull_request:
