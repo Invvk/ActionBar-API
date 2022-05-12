@@ -1,0 +1,63 @@
+plugins {
+    id 'java-library'
+    id 'signing'
+    id 'maven-publish'
+}
+
+group 'io.github.invvk'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
+    api project(":Abstraction")
+    api project(":V1_8")
+    api project(":V1_13")
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'io.github.invvk'
+            artifactId = 'actionbar-api'
+            from(components.java)
+            pom {
+                name = 'Actionbar-API'
+                description = 'Actionbar API for multiple version.'
+                url = 'https://github.com/invvk/actionbar-api'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'Invvk'
+                        name = 'Invvk'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/invvk/actionbar-api'
+                    connection = 'scm:git://github.com/invvk/actionbar-api.git'
+                    developerConnection = 'scm:git://github.com/invvk/actionbar-api.git'
+                }
+            }
+        }
+    }
+}
+
+signing {
+    def signingKey = findProperty("signingKey")
+    def signingPassword = findProperty("signingPassword")
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign publishing.publications.mavenJava
+}

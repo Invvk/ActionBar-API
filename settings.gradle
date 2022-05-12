@@ -1,0 +1,5 @@
+rootProject.name = 'actionbar-api'
+include 'Core'
+include 'Abstraction'
+include 'V1_8'
+include 'V1_13'

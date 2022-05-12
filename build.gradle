@@ -1,0 +1,51 @@
+plugins {
+    id 'java-library'
+    id('io.github.gradle-nexus.publish-plugin') version '1.1.0'
+}
+
+group 'io.github.invvk'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {  //only for users registered in Sonatype after 24 Feb 2021
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+        }
+    }
+}
+
+subprojects {
+    apply plugin: 'java-library';
+
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://repo.codemc.org/repository/nms/'
+        }
+    }
+
+    project.ext.major = '1'
+    project.ext.minor = '0'
+    project.ext.fullVer = project.ext.major + '.' + project.ext.minor
+
+    def targetJavaVersion = 8
+    java {
+        def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
+        if (JavaVersion.current() < javaVersion) {
+            toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+        }
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+            options.release = targetJavaVersion
+        }
+    }
+}
