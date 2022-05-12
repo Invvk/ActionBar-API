@@ -29,6 +29,8 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = 'io.github.invvk'
             artifactId = 'actionbar-api'
+            artifact sourcesJar
+            artifact javadocJar
             from(components.java)
             pom {
                 name = 'Actionbar-API'

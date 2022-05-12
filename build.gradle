@@ -30,7 +30,7 @@ subprojects {
     }
 
     project.ext.major = '1'
-    project.ext.minor = '3'
+    project.ext.minor = '3-SNAPSHOT'
     project.ext.fullVer = project.ext.major + '.' + project.ext.minor
 
     def targetJavaVersion = 8
