@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'io.github.invvk'
-version '1.0'
+version project.ext.fullVer
 
 repositories {
     mavenCentral()
