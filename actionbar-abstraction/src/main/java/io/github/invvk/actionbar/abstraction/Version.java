@@ -1,4 +1,4 @@
-package abstraction;
+package io.github.invvk.actionbar.abstraction;
 
 import org.bukkit.Bukkit;
 
