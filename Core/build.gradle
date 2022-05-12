@@ -19,9 +19,9 @@ java {
 
 dependencies {
     compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
-    implementation project(":Abstraction")
-    implementation project(":V1_8")
-    implementation project(":V1_13")
+    implementation(project(":Abstraction"))
+    implementation(project(":V1_8"))
+    implementation(project(":V1_13"))
 }
 
 publishing {
@@ -29,8 +29,6 @@ publishing {
         mavenJava(MavenPublication) {
             groupId = 'io.github.invvk'
             artifactId = 'actionbar-api'
-            artifact sourcesJar
-            artifact javadocJar
             from(components.java)
             pom {
                 name = 'Actionbar-API'
